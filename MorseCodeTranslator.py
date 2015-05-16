@@ -112,17 +112,38 @@ def morse_to_text_second_half(input_list):
     print(output_list_string)
 
 
-print("This program translates text to morse-code and vice versa. If you would like turn text into morse then type "
-      "'text' without quotes. Otherwise type 'morse' to turn morse into text.")
+def begin():
 
-encode_or_decode = input("Type \"text\" or \"morse\": ")
-input_text = input("Enter what you would like to be translated: \n>").lower()
-input_chars = list(input_text)  # i think this is actually redundant... iterating thru a string would work the same way
+    print("This program translates text to morse-code and vice versa. \nIf you would like turn text into morse then "
+          "type 'text' without quotes. \nOtherwise type 'morse' to turn morse into text.")
 
-if encode_or_decode == "text":
-    text_to_morse(input_chars)
+    valid_input = True
+    while valid_input:
+        encode_or_decode = input("Type \"text\" or \"morse\": ")
+        if encode_or_decode.lower() == "text" or encode_or_decode == "morse":
+            valid_input = False
+        else:
+            print("Your input is not valid. Please try again by entering either \"text\" or \"morse\"")
 
-elif encode_or_decode == "morse":
-    morse_to_text(input_chars)
+    input_text = input("Enter what you would like to be translated: \n>").lower()
+    input_chars = list(input_text)  #
+    # i think this is actually redundant... iterating thru a string would work the same way
+
+    if encode_or_decode == "text":
+        text_to_morse(input_chars)
+
+    elif encode_or_decode == "morse":
+        morse_to_text(input_chars)
 
 
+done = False
+
+while not done:
+    begin()
+    again = input("Would you like to translate something else? \nY or N")
+    if again.lower() == "y":
+        continue
+    else:
+        done = True
+
+exit()
